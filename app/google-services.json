@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "939180812161",
+    "project_id": "myapp23-7adac",
+    "storage_bucket": "myapp23-7adac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939180812161:android:ddc7d58d9b030cf90fea80",
+        "android_client_info": {
+          "package_name": "com.example.myapplication24"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8sBzjFhmfjkbi70dUrAsalBkoG3rt9xY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
