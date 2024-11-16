@@ -8,7 +8,8 @@ import android.os.Parcelable
 @Parcelize
 @Entity(tableName = "user_data")
 data class User(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
     val name: String,
     val noOfChildren: String,
     val address: String

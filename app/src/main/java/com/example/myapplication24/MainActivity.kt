@@ -72,15 +72,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUserProfile() {
-        userId?.let { id ->
-            userViewModel.isUserProfileComplete(id.toInt()) { isComplete ->
-                if (isComplete) {
-                    startActivity(Intent(this@MainActivity, UserProfileActivity::class.java))
-                } else {
-                    startActivity(Intent(this@MainActivity, CompletingProfile::class.java))
-                }
-                finish()
-            }
-        }
+//        userId?.let { id ->
+//            userViewModel.isUserProfileComplete(id.toInt()) { isComplete ->
+//                if (isComplete) {
+//                    startActivity(Intent(this@MainActivity, UserProfileActivity::class.java))
+//                } else {
+//                    startActivity(Intent(this@MainActivity, CompletingProfile::class.java))
+//                }
+//                finish()
+//            }
+//        }
     }
 }

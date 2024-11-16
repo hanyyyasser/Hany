@@ -55,7 +55,7 @@ class CompletingProfile : AppCompatActivity() {
         }
 
 
-        val user = User(0, name, numberOfChildren, address)
+        val user = User("0", name, numberOfChildren, address)
         userViewModel.addUser(user)
 
         Log.d("CompletingProfile", "User profile saved: $name, $address, $numberOfChildren, $imageUri")

@@ -10,8 +10,8 @@ class UserRepository(private val userDao: UserDao) {
         userDao.addUser(user)
     }
 
-    suspend fun isUserProfileComplete(userId: Int): Boolean {
-        val user = userDao.getUserById(userId)
-        return user != null && user.name.isNotEmpty() && user.address.isNotEmpty() && user.noOfChildren.isNotEmpty()
-    }
+//    suspend fun isUserProfileComplete(userId: Int): Boolean {
+//        val user = userDao.getUserById(userId)
+//        return user != null && user.name.isNotEmpty() && user.address.isNotEmpty() && user.noOfChildren.isNotEmpty()
+//    }
 }

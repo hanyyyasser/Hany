@@ -3,6 +3,7 @@ package com.example.myapplication24.data
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,12 +26,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun isUserProfileComplete(userId: Int, callback: (Boolean) -> Unit) {
-        viewModelScope.launch {
-            val isComplete = withContext(Dispatchers.IO) {
-                repository.isUserProfileComplete(userId)
-            }
-            callback(isComplete)
-        }
-    }
+//    fun isUserProfileComplete(userId: Int, callback: (Boolean) -> Unit) {
+//        viewModelScope.launch {
+//            val isComplete = withContext(Dispatchers.IO) {
+//                repository.isUserProfileComplete(userId)
+//            }
+//            callback(isComplete)
+//        }
+//    }
 }
