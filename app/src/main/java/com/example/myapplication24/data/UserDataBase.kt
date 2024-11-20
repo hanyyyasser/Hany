@@ -4,16 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.myapplication24.Constants.DATABASE_NAME
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
-abstract class User_DataBase : RoomDatabase() {
+@Database(entities = [User::class], version = 3, exportSchema = false)
+abstract class UserDataBase : RoomDatabase() {
+
     abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
-        private var INSTANCE: User_DataBase? = null
+        private var INSTANCE: UserDataBase? = null
 
-        fun GetDataBase(context: Context): User_DataBase {
+        fun getDataBase(context: Context): UserDataBase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -21,9 +23,10 @@ abstract class User_DataBase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    User_DataBase::class.java,
-                    "user_database"
-                ).build()
+                    UserDataBase::class.java,
+                    DATABASE_NAME
+                ).fallbackToDestructiveMigration()
+                .build()
                 INSTANCE = instance
                 return instance
             }

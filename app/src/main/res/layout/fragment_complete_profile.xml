@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.099" />
 
     <EditText
-        android:id="@+id/namePRT"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/custom_edittext"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.468" />
 
     <EditText
-        android:id="@+id/NoOFChild"
+        android:id="@+id/noOfChild"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/custom_edittext"
@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.59" />
 
     <EditText
-        android:id="@+id/Adress"
+        android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/custom_edittext"

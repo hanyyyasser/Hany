@@ -1,6 +1,5 @@
 package com.example.myapplication24.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.example.myapplication24.data.User
+import com.example.myapplication24.HomeActivity
+import com.example.myapplication24.data.SharedPreferenceDatabase
 import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentUserProfileBinding
 
@@ -17,7 +16,6 @@ class UserProfileFragment : Fragment() {
 
     private var _binding : FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
-    private var userId : String? = null
     private val userViewModel : UserViewModel by viewModels()
 
     override fun onCreateView(
@@ -37,19 +35,29 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun initialize() {
-        userId = UserProfileFragmentArgs.fromBundle(requireArguments()).userId
+        loadUserProfile()
     }
 
     private fun onClicks() {
         binding.editButton.setOnClickListener { openEditProfile() }
     }
 
-    private fun loadUserProfile() {  }
+    private fun loadUserProfile() {
+        userViewModel.apply {
+            val id = SharedPreferenceDatabase.getId()
+            getName(id)
+            getAddress(id)
+            getNoOfChild(id)
+        }
 
-    private fun openEditProfile() {
-        // Start the Complete_BabySitter activity to edit user details
-        findNavController().popBackStack()
+        binding.apply {
+            userViewModel.name.observe(viewLifecycleOwner) { name.text = it }
+            userViewModel.address.observe(viewLifecycleOwner) { address.text = it }
+            userViewModel.noOfChild.observe(viewLifecycleOwner) { noOfChild.text = it }
+        }
     }
+
+    private fun openEditProfile() { }
 
     override fun onDestroyView() {
         super.onDestroyView()
