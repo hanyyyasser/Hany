@@ -32,7 +32,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.448"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
                 android:id="@+id/total_value"
@@ -74,7 +74,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/radioButton" />
 
             <TextView
-                android:id="@+id/ordersummery"
+                android:id="@+id/orderSummeryAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -95,7 +95,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.131"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
                 android:id="@+id/total"
@@ -108,7 +108,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.152"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
                 android:id="@+id/TotalPrice_value"
@@ -134,7 +134,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.802"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <RadioButton
                 android:id="@+id/radioButton"
@@ -174,7 +174,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.811"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
                 android:layout_width="166dp"
@@ -184,7 +184,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.448"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -195,7 +195,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -206,7 +206,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.518"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
+                app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

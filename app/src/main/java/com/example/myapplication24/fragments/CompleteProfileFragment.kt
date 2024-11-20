@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.R
+import com.example.myapplication24.data.SharedPreferenceDatabase
 import com.example.myapplication24.data.User
 import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentCompleteProfileBinding
@@ -22,7 +23,6 @@ class CompleteProfileFragment : Fragment() {
 
     private val userViewModel: UserViewModel by viewModels()
     private var imageUri: Uri? = null
-    private var userId : Int? = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +40,7 @@ class CompleteProfileFragment : Fragment() {
     }
 
     private fun initialize() {
-        userId = CompleteProfileFragmentArgs.fromBundle(requireArguments()).userId
-        Toast.makeText(requireActivity(), " $userId", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireActivity(), " ${SharedPreferenceDatabase.getId()}", Toast.LENGTH_LONG).show()
     }
 
     private fun onClicks() {
@@ -56,21 +55,18 @@ class CompleteProfileFragment : Fragment() {
     }
 
     private fun saveUserProfile() {
-        val name = binding.namePRT.text.toString().trim()
-        val address = binding.NoOFChild.text.toString().trim()
-        val numberOfChildren = binding.Adress.text.toString().trim()
+        val name = binding.name.text.toString().trim()
+        val address = binding.noOfChild.text.toString().trim()
+        val numberOfChildren = binding.address.text.toString().trim()
 
         if (name.isEmpty() || address.isEmpty() || numberOfChildren.isEmpty()) {
             Toast.makeText(requireActivity(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return
         }
 
+        val user = User(SharedPreferenceDatabase.getId(), name, numberOfChildren, address)
 
-        val user = User("0", name, numberOfChildren, address)
         userViewModel.addUser(user)
-
-        Log.d("CompletingProfile", "User profile saved: $name, $address, $numberOfChildren, $imageUri")
-
         findNavController().navigate(R.id.action_completeProfileFragment_to_userProfileFragment)
     }
 

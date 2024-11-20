@@ -1,7 +1,6 @@
 package com.example.myapplication24.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.R
+import com.example.myapplication24.data.SharedPreferenceDatabase
 import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -21,7 +21,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var mAuth: FirebaseAuth
     private val userViewModel: UserViewModel by viewModels()
-    private var userId: String? = null
+    private var userId: String? = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +35,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mAuth = FirebaseAuth.getInstance()
-
         onClicks()
     }
 
@@ -44,11 +43,6 @@ class LoginFragment : Fragment() {
             loginButton.setOnClickListener { loginUser() }
             signupText.setOnClickListener { findNavController().navigate(R.id.action_loginFragment_to_signUpFragment) }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun loginUser() {
@@ -66,35 +60,39 @@ class LoginFragment : Fragment() {
                     if (task.isSuccessful) {
                         Toast.makeText(requireActivity(), "Login successful", Toast.LENGTH_SHORT).show()
                         userId = mAuth.currentUser?.uid
-                        Log.d("MainActivity", "Login successful")
-                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToUserProfileFragment(userId!!))
-                        // checkUserProfile()
+                        setSharedPreference(userId)
+                        checkUserProfile()
                     } else {
                         Toast.makeText(
                             requireActivity(),
                             "Authentication failed: ${task.exception?.message}",
                             Toast.LENGTH_SHORT
                         ).show()
-                        Log.e("MainActivity", "Authentication failed: ${task.exception?.message}")
                     }
                 }
         } catch (e: Exception) {
             Toast.makeText(requireActivity(), "Error logging in: ${e.message}", Toast.LENGTH_SHORT).show()
-            Log.e("MainActivity", "Error logging in: ${e.message}")
         }
     }
 
-    private fun checkUserProfile() {
-
-//        userId?.let { id ->
-//            userViewModel.isUserProfileComplete(id) { isComplete ->
-//                if (isComplete) {
-//                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToUserProfileFragment(id))
-//                } else {
-//                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCompleteProfileFragment(id))
-//                }
-//            }
-//        }
+    private fun setSharedPreference(id: String?) {
+        SharedPreferenceDatabase.setId(id)
     }
 
+    private fun checkUserProfile() {
+        userId?.let { id ->
+            userViewModel.isUserProfileComplete(id) { isComplete ->
+                if (isComplete) {
+                    findNavController().navigate(R.id.action_loginFragment_to_userProfileFragment)
+                } else {
+                    findNavController().navigate(R.id.action_loginFragment_to_completeProfileFragment)
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
