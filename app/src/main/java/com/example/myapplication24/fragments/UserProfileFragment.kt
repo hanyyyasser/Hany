@@ -1,5 +1,6 @@
 package com.example.myapplication24.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,6 +43,7 @@ class UserProfileFragment : Fragment() {
         binding.editButton.setOnClickListener { openEditProfile() }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadUserProfile() {
         userViewModel.apply {
             val id = SharedPreferenceDatabase.getId()
@@ -51,7 +53,9 @@ class UserProfileFragment : Fragment() {
         }
 
         binding.apply {
-            userViewModel.name.observe(viewLifecycleOwner) { name.text = it }
+            userViewModel.name.observe(viewLifecycleOwner) {
+                name.text = "Name: $it"
+            }
             userViewModel.address.observe(viewLifecycleOwner) { address.text = it }
             userViewModel.noOfChild.observe(viewLifecycleOwner) { noOfChild.text = it }
         }
