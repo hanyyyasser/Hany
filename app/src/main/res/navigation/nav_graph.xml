@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailed_profile"
-        android:name="com.example.myapplication24.fragments.detailed_profile"
+        android:name="com.example.myapplication24.fragments.DetailedProfile"
         android:label="detailed_profile" >
         <action
             android:id="@+id/action_detailed_profile_to_payment"
@@ -79,6 +79,15 @@
         <action
             android:id="@+id/action_detailed_profile_to_main_Page"
             app:destination="@id/main_Page" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="cost"
+            app:argType="integer" />
+        <argument
+            android:name="image"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/main_Page"

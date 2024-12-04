@@ -11,18 +11,15 @@ import com.example.myapplication24.R
 import com.example.myapplication24.data.SharedPreferenceDatabase
 import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentMainPageBinding
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication24.data.Babysitter
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication24.data.BabysitterAdapter
 class Main_Page : Fragment() {
 
     private var _binding: FragmentMainPageBinding? = null
     private val binding get() = _binding!!
     private val userViewModel: UserViewModel by viewModels()
-    private lateinit var adapter: BabysitterAdapter
+    private lateinit var babysitterAdapter: BabysitterAdapter
     private  val  newArrayList= ArrayList<Babysitter>()
-
 
     // Use findNavController() to get the NavController instance
     private val navController by lazy { findNavController() }
@@ -39,10 +36,19 @@ class Main_Page : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sayHi() // Show the greeting message
         setupBottomNavigation() // Set up Bottom Navigation item click listeners
-        setRecycleerView()//recyclerView()
-
+        setRecycleerView() //recyclerView()
+        onClick()
     }
 
+    private fun onClick() {
+        babysitterAdapter.onUserClick = object : BabysitterAdapter.OnUserClick {
+            override fun onClick(babySitter: Babysitter) {
+                findNavController().navigate (
+                    Main_PageDirections.actionMainPageToDetailedProfile(babySitter.name, babySitter.price, babySitter.profileImageResId)
+                )
+            }
+        }
+    }
 
     private fun sayHi() {
         // Fetch the name using the userViewModel
@@ -58,44 +64,44 @@ class Main_Page : Fragment() {
             }
         }
     }
+
     private fun setRecycleerView(){
         newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
         newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
         newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
         newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
         newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
-        adapter = BabysitterAdapter(newArrayList)
-        binding.topView.adapter= adapter
-
+        babysitterAdapter = BabysitterAdapter(newArrayList)
+        binding.topView.adapter= babysitterAdapter
     }
 
     private fun setupBottomNavigation() {
         // Set up the BottomNavigationView's item selection listener
-        binding.bottomNavigationView2.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_home -> {
-                    // Navigate to Main_Page
-                    navController.navigate(R.id.main_Page)
-                    true
-                }
-                R.id.profile -> {
-                    // Navigate to UserProfileFragment
-                    navController.navigate(R.id.action_main_Page_to_userProfileFragment)
-                    true
-                }
-                R.id.order -> {
-                    // Navigate to OrderPage
-                    navController.navigate(R.id.action_main_Page_to_order_Page)
-                    true
-                }
-                R.id.map -> {
-                    // Navigate to MapsFragment
-                    navController.navigate(R.id.action_main_Page_to_mapsFragment)
-                    true
-                }
-                else -> false
-            }
-        }
+//        binding.bottomNavigationView2.setOnNavigationItemSelectedListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.nav_home -> {
+//                    // Navigate to Main_Page
+//                    navController.navigate(R.id.main_Page)
+//                    true
+//                }
+//                R.id.profile -> {
+//                    // Navigate to UserProfileFragment
+//                    navController.navigate(R.id.action_main_Page_to_userProfileFragment)
+//                    true
+//                }
+//                R.id.order -> {
+//                    // Navigate to OrderPage
+//                    navController.navigate(R.id.action_main_Page_to_order_Page)
+//                    true
+//                }
+//                R.id.map -> {
+//                    // Navigate to MapsFragment
+//                    navController.navigate(R.id.action_main_Page_to_mapsFragment)
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
     }
 
 

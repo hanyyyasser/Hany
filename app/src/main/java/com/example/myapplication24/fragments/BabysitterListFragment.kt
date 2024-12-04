@@ -35,7 +35,7 @@ class BabysitterListFragment : Fragment(R.layout.fragment_main__page) {
         )
 
         // Set up RecyclerView with Adapter
-        babysitterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        babysitterRecyclerView.adapter = BabysitterAdapter(babysitters)
+//        babysitterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        babysitterRecyclerView.adapter = BabysitterAdapter(babysitters)
     }
 }

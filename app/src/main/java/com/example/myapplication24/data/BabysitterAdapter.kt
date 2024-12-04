@@ -6,41 +6,48 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication24.R
 import com.example.myapplication24.data.Babysitter
 import com.example.myapplication24.data.BabysitterAdapter
+import com.example.myapplication24.databinding.ViewHolderBinding
 
-class BabysitterAdapter(private val babysitters: List<Babysitter>,) : RecyclerView.Adapter<BabysitterAdapter.BabysitterViewHolder>() {
+class BabysitterAdapter (
+    private val babysitters: List<Babysitter>
+) : RecyclerView.Adapter<BabysitterAdapter.BabysitterViewHolder>() {
 
-    var onUserClick : OnUserClick? = null //activate objects in recyclerView
+    var onUserClick : OnUserClick? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BabysitterViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.view_holder, parent, false)
-        return BabysitterViewHolder(itemView)
-
+        val binding = ViewHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return BabysitterViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return babysitters.size
-    }
+    override fun getItemCount(): Int = babysitters.size
 
     override fun onBindViewHolder(holder: BabysitterViewHolder, position: Int) {
-        val currentItem = babysitters[position]
-        holder.imageView.setImageResource(currentItem.profileImageResId)
-        holder.nameView.text = currentItem.name
-        holder.priceView.text = currentItem.price.toString()
+        holder.bind(babysitters[position])
     }
-class BabysitterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val imageView : ImageView = itemView.findViewById(R.id.img)
-    val nameView : TextView = itemView.findViewById(R.id.nameTxt)
-    val priceView : TextView = itemView.findViewById(R.id.costTxt)
 
+    inner class BabysitterViewHolder(private val binding: ViewHolderBinding)
+        : ViewHolder(binding.root) {
 
+            init {
+                binding.root.setOnClickListener {
+                    onUserClick?.onClick(babysitters[layoutPosition])
+                }
+            }
 
-}
+            fun bind(babySitter: Babysitter) {
+                binding.apply {
+                    img.setImageResource(babySitter.profileImageResId)
+                    nameTxt.text = babySitter.name
+                    costTxt.text = babySitter.price.toString()
+                }
+            }
+    }
 
-
-}
     interface OnUserClick {
-        fun onClick(babySitter : Babysitter)//activate objects in recyclerView
+        fun onClick(babySitter : Babysitter)
     }
-
+}
