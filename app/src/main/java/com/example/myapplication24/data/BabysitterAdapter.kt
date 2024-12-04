@@ -33,10 +33,8 @@ class BabysitterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val imageView : ImageView = itemView.findViewById(R.id.img)
     val nameView : TextView = itemView.findViewById(R.id.nameTxt)
     val priceView : TextView = itemView.findViewById(R.id.costTxt)
-    init {
-        itemView.setOnClickListener {
-            onUserClick?.onClick(babysitters[adapterPosition])//activate objects in recyclerView
-        }
+
+
 
 }
 
@@ -45,4 +43,4 @@ class BabysitterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     interface OnUserClick {
         fun onClick(babySitter : Babysitter)//activate objects in recyclerView
     }
-}
+
