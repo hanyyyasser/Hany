@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.HomeActivity
+import com.example.myapplication24.R
 import com.example.myapplication24.data.SharedPreferenceDatabase
 import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentUserProfileBinding
@@ -18,6 +20,7 @@ class UserProfileFragment : Fragment() {
     private var _binding : FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
     private val userViewModel : UserViewModel by viewModels()
+    private val navController by lazy { findNavController() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +44,9 @@ class UserProfileFragment : Fragment() {
 
     private fun onClicks() {
         binding.editButton.setOnClickListener { openEditProfile() }
+        binding.imageView3.setOnClickListener() {
+            navController.navigate(R.id.action_userProfileFragment_to_main_Page)
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -53,9 +59,7 @@ class UserProfileFragment : Fragment() {
         }
 
         binding.apply {
-            userViewModel.name.observe(viewLifecycleOwner) {
-                name.text = "Name: $it"
-            }
+            userViewModel.name.observe(viewLifecycleOwner) { name.text = it}
             userViewModel.address.observe(viewLifecycleOwner) { address.text = it }
             userViewModel.noOfChild.observe(viewLifecycleOwner) { noOfChild.text = it }
         }

@@ -34,11 +34,11 @@ class SplashFragment : Fragment() {
     private fun handleSplash() {
         Handler(Looper.myLooper()!!).postDelayed({
             if(SharedPreferenceDatabase.getId().isEmpty()) {
-                TODO()
+                findNavController().navigate(R.id.action_splashFragment_to_main_Page)
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             }
-        }, 3000)
+        }, 5300)
     }
 
     override fun onDestroyView() {

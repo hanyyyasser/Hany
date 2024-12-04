@@ -83,7 +83,7 @@ class LoginFragment : Fragment() {
         userId?.let { id ->
             userViewModel.isUserProfileComplete(id) { isComplete ->
                 if (isComplete) {
-                    findNavController().navigate(R.id.action_loginFragment_to_userProfileFragment)
+                    findNavController().navigate(R.id.action_loginFragment_to_main_Page)
                 } else {
                     findNavController().navigate(R.id.action_loginFragment_to_completeProfileFragment)
                 }

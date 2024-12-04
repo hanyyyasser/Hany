@@ -67,7 +67,7 @@ class CompleteProfileFragment : Fragment() {
         val user = User(SharedPreferenceDatabase.getId(), name, numberOfChildren, address)
 
         userViewModel.addUser(user)
-        findNavController().navigate(R.id.action_completeProfileFragment_to_userProfileFragment)
+        findNavController().navigate(R.id.action_completeProfileFragment_to_main_Page)
     }
 
     override fun onDestroyView() {

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_loginFragment_to_completeProfileFragment"
             app:destination="@id/completeProfileFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_main_Page"
+            app:destination="@id/main_Page" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -28,7 +31,11 @@
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.example.myapplication24.fragments.UserProfileFragment"
-        android:label="UserProfileFragment" />
+        android:label="UserProfileFragment" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_main_Page"
+            app:destination="@id/main_Page" />
+    </fragment>
     <fragment
         android:id="@+id/completeProfileFragment"
         android:name="com.example.myapplication24.fragments.CompleteProfileFragment"
@@ -37,6 +44,9 @@
         <action
             android:id="@+id/action_completeProfileFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_completeProfileFragment_to_main_Page"
+            app:destination="@id/main_Page" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -46,6 +56,69 @@
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_main_Page"
+            app:destination="@id/main_Page" />
+    </fragment>
+    <fragment
+        android:id="@+id/order_Page"
+        android:name="com.example.myapplication24.fragments.Order_Page"
+        android:label="fragment_order__page"
+        tools:layout="@layout/fragment_order__page" >
+        <action
+            android:id="@+id/action_order_Page_to_main_Page"
+            app:destination="@id/main_Page" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailed_profile"
+        android:name="com.example.myapplication24.fragments.detailed_profile"
+        android:label="detailed_profile" >
+        <action
+            android:id="@+id/action_detailed_profile_to_payment"
+            app:destination="@id/payment" />
+        <action
+            android:id="@+id/action_detailed_profile_to_main_Page"
+            app:destination="@id/main_Page" />
+    </fragment>
+    <fragment
+        android:id="@+id/main_Page"
+        android:name="com.example.myapplication24.fragments.Main_Page"
+        android:label="fragment_main__page"
+        tools:layout="@layout/fragment_main__page" >
+        <action
+            android:id="@+id/action_main_Page_to_detailed_profile"
+            app:destination="@id/detailed_profile" />
+        <action
+            android:id="@+id/action_main_Page_to_order_Page"
+            app:destination="@id/order_Page" />
+        <action
+            android:id="@+id/action_main_Page_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_main_Page_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/final_One"
+        android:name="com.example.myapplication24.fragments.Final_One"
+        android:label="fragment_final__one"
+        tools:layout="@layout/fragment_final__one" />
+    <fragment
+        android:id="@+id/payment"
+        android:name="com.example.myapplication24.fragments.payment"
+        android:label="payment" >
+        <action
+            android:id="@+id/action_payment_to_final_One"
+            app:destination="@id/final_One" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.myapplication24.fragments.mapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_main_Page"
+            app:destination="@id/main_Page" />
     </fragment>
 
 </navigation>
