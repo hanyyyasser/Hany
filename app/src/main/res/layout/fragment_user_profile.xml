@@ -115,14 +115,15 @@
 
     <Button
         android:id="@+id/editButton"
-        android:layout_width="421dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="404dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/purple"
         android:text="Edit"
         android:textColorLink="@color/purple"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/noOfChild" />
 
@@ -135,5 +136,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

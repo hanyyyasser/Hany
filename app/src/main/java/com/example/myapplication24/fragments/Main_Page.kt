@@ -2,6 +2,7 @@ package com.example.myapplication24.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentMainPageBinding
 import com.example.myapplication24.data.Babysitter
 import com.example.myapplication24.data.BabysitterAdapter
+import android.text.Editable
 class Main_Page : Fragment() {
 
     private var _binding: FragmentMainPageBinding? = null
@@ -38,13 +40,30 @@ class Main_Page : Fragment() {
         setupBottomNavigation() // Set up Bottom Navigation item click listeners
         setRecycleerView() //recyclerView()
         onClick()
+        setbuttons()
+        setupSearch()
+    }
+
+    private fun setbuttons(){
+        binding.profileLogo.setOnClickListener {
+            navController.navigate(R.id.action_main_Page_to_userProfileFragment)
+        }
+        binding.logoutButton.setOnClickListener {
+            navController.navigate(R.id.action_main_Page_to_loginFragment)
+        }
+        binding.seeAll.setOnClickListener(){
+            navController.navigate(R.id.action_main_Page_to_bookingdetails)
+        }
     }
 
     private fun onClick() {
         babysitterAdapter.onUserClick = object : BabysitterAdapter.OnUserClick {
             override fun onClick(babySitter: Babysitter) {
                 findNavController().navigate (
-                    Main_PageDirections.actionMainPageToDetailedProfile(babySitter.name, babySitter.price, babySitter.profileImageResId)
+                    Main_PageDirections.actionMainPageToDetailedProfile(
+                        babySitter.name,
+                        babySitter.price,
+                        babySitter.profileImageResId)
                 )
             }
         }
@@ -66,42 +85,56 @@ class Main_Page : Fragment() {
     }
 
     private fun setRecycleerView(){
-        newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
-        newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
-        newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
-        newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
-        newArrayList.add(Babysitter("Alice", 25, R.drawable.babsitter))
+        newArrayList.add(Babysitter("Alice", 200, R.drawable.w5))
+        newArrayList.add(Babysitter("sara", 250, R.drawable.w2))
+        newArrayList.add(Babysitter("victoria", 400, R.drawable.w3))
+        newArrayList.add(Babysitter("skyler", 180, R.drawable.w1))
+        newArrayList.add(Babysitter("anny", 800, R.drawable.w4))
         babysitterAdapter = BabysitterAdapter(newArrayList)
         binding.topView.adapter= babysitterAdapter
     }
 
     private fun setupBottomNavigation() {
-        // Set up the BottomNavigationView's item selection listener
-//        binding.bottomNavigationView2.setOnNavigationItemSelectedListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.nav_home -> {
-//                    // Navigate to Main_Page
-//                    navController.navigate(R.id.main_Page)
-//                    true
-//                }
-//                R.id.profile -> {
-//                    // Navigate to UserProfileFragment
-//                    navController.navigate(R.id.action_main_Page_to_userProfileFragment)
-//                    true
-//                }
-//                R.id.order -> {
-//                    // Navigate to OrderPage
-//                    navController.navigate(R.id.action_main_Page_to_order_Page)
-//                    true
-//                }
-//                R.id.map -> {
-//                    // Navigate to MapsFragment
-//                    navController.navigate(R.id.action_main_Page_to_mapsFragment)
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
+        binding.bottomNavigationView2.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_home -> {
+                    // Navigate to Main_Page
+                    navController.navigate(R.id.main_Page)
+                    true
+                }
+
+                R.id.order -> {
+                    // Navigate to OrderPage
+                    navController.navigate(R.id.action_main_Page_to_order_Page)
+                    true
+                }
+                R.id.map -> {
+                    // Navigate to MapsFragment
+                    navController.navigate(R.id.action_main_Page_to_mapsFragment)
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun setupSearch() {
+        binding.editTextText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filter(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun filter(text: String) {
+        val filteredList = newArrayList.filter {
+            it.name.contains(text, ignoreCase = true)
+        }
+        babysitterAdapter.updateList(filteredList)
     }
 
 

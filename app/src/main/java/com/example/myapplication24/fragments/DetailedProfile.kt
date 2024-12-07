@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.R
 import com.example.myapplication24.databinding.FragmentDetailedProfileBinding
 
@@ -13,6 +14,7 @@ class DetailedProfile : Fragment() {
 
     private var _binding : FragmentDetailedProfileBinding? = null
     private val binding get() = _binding!!
+    private val navController by lazy { findNavController() }
 
     private var nameString : String = ""
     private var costString : Int = 0
@@ -31,6 +33,16 @@ class DetailedProfile : Fragment() {
 
         getData()
         setData()
+        onClicks()
+    }
+    private fun onClicks() {
+
+        binding.backBtn.setOnClickListener() {
+            navController.navigate(R.id.action_detailed_profile_to_main_Page)
+        }
+        binding.makeBtn.setOnClickListener(){
+            navController.navigate(R.id.action_detailed_profile_to_bookingdetails)
+        }
     }
 
     private fun getData() {
@@ -41,8 +53,8 @@ class DetailedProfile : Fragment() {
 
     private fun setData() {
         binding.apply {
-            nameText.text = nameString
-            ageText.text = costString.toString()
+            nameBabysiiter.text = nameString
+            costBabysitter.text = costString.toString()
             img.setImageResource(image)
         }
     }

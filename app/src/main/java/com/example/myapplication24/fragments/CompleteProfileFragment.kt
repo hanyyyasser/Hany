@@ -1,5 +1,6 @@
 package com.example.myapplication24.fragments
-
+import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -46,11 +47,20 @@ class CompleteProfileFragment : Fragment() {
     private fun onClicks() {
         binding.apply {
             uploadImageButton.setOnClickListener {
-                // Code to open gallery and select image
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
             }
             confirmButton.setOnClickListener {
                 saveUserProfile()
             }
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
+            imageUri = data?.data
+            binding.profileImageView.setImageURI(imageUri)
         }
     }
 
@@ -73,5 +83,8 @@ class CompleteProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    companion object {
+        private const val REQUEST_CODE_PICK_IMAGE = 100
     }
 }

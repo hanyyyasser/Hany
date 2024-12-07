@@ -36,8 +36,7 @@ class SplashFragment : Fragment() {
             if(SharedPreferenceDatabase.getId().isEmpty()) {
                 findNavController().navigate(R.id.action_splashFragment_to_main_Page)
             } else {
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-            }
+                findNavController().navigate(R.id.action_splashFragment_to_main_Page)            }
         }, 5300)
     }
 

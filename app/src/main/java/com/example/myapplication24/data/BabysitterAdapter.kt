@@ -13,10 +13,15 @@ import com.example.myapplication24.data.BabysitterAdapter
 import com.example.myapplication24.databinding.ViewHolderBinding
 
 class BabysitterAdapter (
-    private val babysitters: List<Babysitter>
+    private var babysitters: List<Babysitter>
 ) : RecyclerView.Adapter<BabysitterAdapter.BabysitterViewHolder>() {
 
     var onUserClick : OnUserClick? = null
+
+    fun updateList(newList: List<Babysitter>) {
+        babysitters = newList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BabysitterViewHolder {
         val binding = ViewHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)

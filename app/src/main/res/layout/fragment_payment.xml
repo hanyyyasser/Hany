@@ -90,10 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="144dp"
-                android:text="Extra fees"
+                android:text="Price/Night"
                 android:textSize="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.131"
+                app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
             <TextView
-                android:id="@+id/TotalPrice_value"
+                android:id="@+id/totalPriceValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="25 EGP"
@@ -132,7 +132,7 @@
                 android:text="0 EGP"
                 android:textSize="17dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.802"
+                app:layout_constraintHorizontal_bias="0.83"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/orderSummeryAddress" />
 
@@ -235,7 +235,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ordersummery" />
 
         <TextView
-            android:id="@+id/order_value"
+            android:id="@+id/orderValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
@@ -259,7 +259,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/backPayment"
             android:layout_width="32dp"
             android:layout_height="42dp"
             android:layout_marginTop="16dp"

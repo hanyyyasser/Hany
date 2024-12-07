@@ -37,6 +37,7 @@ class Order_Page : Fragment() {
         binding.imageView.setOnClickListener(){
             navController.navigate(R.id.action_order_Page_to_main_Page)
         }
+
     }
 
 
