@@ -49,15 +49,17 @@ class Bookingdetails : Fragment() {
             showDatePickerDialog(checkOutCalendar, binding.checkOutDate)
         }
 
-        // Set up the calculate button click listener
-        binding.confirmBotton.setOnClickListener {
-            calculateDays()
-        }
+
 
         binding.bkBtn.setOnClickListener(){
             navController.navigate(R.id.action_bookingdetails_to_detailed_profile)
         }
 
+    }
+    private  fun onClick(){
+        binding.confirmBotton.setOnClickListener(){
+            navController.navigate(R.id.action_bookingdetails_to_payment)
+        }
     }
     private fun showDatePickerDialog(calendar: Calendar, editText: EditText) {
         val datePickerDialog = DatePickerDialog(
@@ -87,7 +89,7 @@ class Bookingdetails : Fragment() {
             if (checkInDate != null && checkOutDate != null) {
                 val diffInMillis = checkOutDate.time - checkInDate.time
                 val diffInDays = diffInMillis / (1000 * 60 * 60 * 24) // Convert to days
-                binding.result.text = "Days Spent: $diffInDays"
+                //binding.result.text = "Days Spent: $diffInDays"
             } else {
                 binding.result.text = "Please select valid dates"
             }

@@ -52,7 +52,7 @@ class Main_Page : Fragment() {
             navController.navigate(R.id.action_main_Page_to_loginFragment)
         }
         binding.seeAll.setOnClickListener(){
-            navController.navigate(R.id.action_main_Page_to_bookingdetails)
+            navController.navigate(R.id.action_main_Page_to_mapsFragment)
         }
     }
 

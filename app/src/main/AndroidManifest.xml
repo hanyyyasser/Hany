@@ -38,6 +38,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <meta-data
+            android:name="com.google.android.gms.maps.V2.API_KEY"
+            android:value="AIzaSyB_PBhr6aXwrhLUbx4JF3Ku_byhV3MTleU" />
     </application>
 
 </manifest>

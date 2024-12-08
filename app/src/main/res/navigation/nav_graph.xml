@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_detailed_profile_to_bookingdetails"
             app:destination="@id/bookingdetails" />
+        <action
+            android:id="@+id/action_detailed_profile_to_payment"
+            app:destination="@id/payment" />
     </fragment>
     <fragment
         android:id="@+id/main_Page"
@@ -151,6 +154,9 @@
         <action
             android:id="@+id/action_bookingdetails_to_detailed_profile"
             app:destination="@id/detailed_profile" />
+        <action
+            android:id="@+id/action_bookingdetails_to_payment"
+            app:destination="@id/payment" />
     </fragment>
 
 </navigation>

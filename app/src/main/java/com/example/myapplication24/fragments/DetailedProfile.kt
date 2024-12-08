@@ -41,7 +41,7 @@ class DetailedProfile : Fragment() {
             navController.navigate(R.id.action_detailed_profile_to_main_Page)
         }
         binding.makeBtn.setOnClickListener(){
-            navController.navigate(R.id.action_detailed_profile_to_bookingdetails)
+            navController.navigate(DetailedProfileDirections.actionDetailedProfileToPayment(costString))
         }
     }
 

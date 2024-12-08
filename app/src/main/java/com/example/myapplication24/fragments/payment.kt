@@ -42,7 +42,8 @@ class payment : Fragment() {
 //                navController.navigate(R.id.action_payment_to_detailed_profile)
             }
     private fun getData() {
-        costString = DetailedProfileArgs.fromBundle(requireArguments()).cost//edited
+        costString = paymentArgs.fromBundle(requireArguments()).cost//edited
+        Toast.makeText(requireActivity(), costString.toString(), Toast.LENGTH_SHORT).show()
 
     }
 
