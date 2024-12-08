@@ -1,6 +1,8 @@
-package com.example.myapplication24.data
+package com.example.myapplication24.data.repository
 
 import androidx.lifecycle.LiveData
+import com.example.myapplication24.data.dao.UserDao
+import com.example.myapplication24.data.model.User
 
 class UserRepository(private val userDao: UserDao) {
 
