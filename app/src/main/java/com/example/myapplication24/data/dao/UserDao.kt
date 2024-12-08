@@ -1,10 +1,11 @@
-package com.example.myapplication24.data
+package com.example.myapplication24.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.myapplication24.data.model.User
 
 @Dao
 interface UserDao {

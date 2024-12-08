@@ -5,11 +5,20 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.myapplication24.Constants.DATABASE_NAME
+import com.example.myapplication24.data.dao.OrderDao
+import com.example.myapplication24.data.dao.UserDao
+import com.example.myapplication24.data.model.Order
+import com.example.myapplication24.data.model.User
 
-@Database(entities = [User::class,], version = 3, exportSchema = false)
+@Database (
+    entities = [User::class, Order::class],
+    version = 6,
+    exportSchema = false
+)
 abstract class UserDataBase : RoomDatabase() {
 
-    abstract fun userDao(): UserDao
+    abstract fun userDao() : UserDao
+    abstract fun orderDao() : OrderDao
 
     companion object {
         @Volatile

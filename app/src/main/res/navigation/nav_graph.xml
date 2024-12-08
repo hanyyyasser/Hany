@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/order_Page"
-        android:name="com.example.myapplication24.fragments.Order_Page"
+        android:name="com.example.myapplication24.fragments.OrderPage"
         android:label="fragment_order__page"
         tools:layout="@layout/fragment_order__page" >
         <action
@@ -126,7 +126,7 @@
         tools:layout="@layout/fragment_final__one" />
     <fragment
         android:id="@+id/payment"
-        android:name="com.example.myapplication24.fragments.payment"
+        android:name="com.example.myapplication24.fragments.Payment"
         android:label="payment" >
         <action
             android:id="@+id/action_payment_to_final_One"
@@ -136,6 +136,15 @@
             app:destination="@id/detailed_profile" />
         <argument
             android:name="cost"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_payment_to_order_Page"
+            app:destination="@id/order_Page" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="image"
             app:argType="integer" />
     </fragment>
     <fragment

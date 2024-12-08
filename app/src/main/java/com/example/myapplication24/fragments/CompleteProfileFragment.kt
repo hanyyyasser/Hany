@@ -3,7 +3,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.R
 import com.example.myapplication24.data.SharedPreferenceDatabase
-import com.example.myapplication24.data.User
+import com.example.myapplication24.data.model.User
 import com.example.myapplication24.data.UserViewModel
 import com.example.myapplication24.databinding.FragmentCompleteProfileBinding
 
@@ -74,7 +73,7 @@ class CompleteProfileFragment : Fragment() {
             return
         }
 
-        val user = User(SharedPreferenceDatabase.getId(), name, numberOfChildren, address)
+        val user = User(SharedPreferenceDatabase.getId(), name, numberOfChildren, address,0)
 
         userViewModel.addUser(user)
         findNavController().navigate(R.id.action_completeProfileFragment_to_main_Page)

@@ -37,8 +37,8 @@ class Main_Page : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sayHi() // Show the greeting message
-        setupBottomNavigation() // Set up Bottom Navigation item click listeners
-        setRecycleerView() //recyclerView()
+        // setupBottomNavigation() // Set up Bottom Navigation item click listeners
+        setRecyclerView() //recyclerView()
         onClick()
         setbuttons()
         setupSearch()
@@ -84,7 +84,7 @@ class Main_Page : Fragment() {
         }
     }
 
-    private fun setRecycleerView(){
+    private fun setRecyclerView(){
         newArrayList.add(Babysitter("Alice", 200, R.drawable.w5))
         newArrayList.add(Babysitter("sara", 250, R.drawable.w2))
         newArrayList.add(Babysitter("victoria", 400, R.drawable.w3))
@@ -94,29 +94,29 @@ class Main_Page : Fragment() {
         binding.topView.adapter= babysitterAdapter
     }
 
-    private fun setupBottomNavigation() {
-        binding.bottomNavigationView2.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_home -> {
-                    // Navigate to Main_Page
-                    navController.navigate(R.id.main_Page)
-                    true
-                }
-
-                R.id.order -> {
-                    // Navigate to OrderPage
-                    navController.navigate(R.id.action_main_Page_to_order_Page)
-                    true
-                }
-                R.id.map -> {
-                    // Navigate to MapsFragment
-                    navController.navigate(R.id.action_main_Page_to_mapsFragment)
-                    true
-                }
-                else -> false
-            }
-        }
-    }
+//    private fun setupBottomNavigation() {
+//        binding.bottomNavigationView2.setOnNavigationItemSelectedListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.nav_home -> {
+//                    // Navigate to Main_Page
+//                    navController.navigate(R.id.main_Page)
+//                    true
+//                }
+//
+//                R.id.order -> {
+//                    // Navigate to OrderPage
+//                    navController.navigate(R.id.action_main_Page_to_order_Page)
+//                    true
+//                }
+//                R.id.map -> {
+//                    // Navigate to MapsFragment
+//                    navController.navigate(R.id.action_main_Page_to_mapsFragment)
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//    }
 
     private fun setupSearch() {
         binding.editTextText.addTextChangedListener(object : TextWatcher {
