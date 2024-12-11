@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Order (
     @PrimaryKey(autoGenerate = true)
-    val orderId : Int = 0,
+    val id : Int = 0,
     val name : String,
     val cost : Int,
     val image: Int

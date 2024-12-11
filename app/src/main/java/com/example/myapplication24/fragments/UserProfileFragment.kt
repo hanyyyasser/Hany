@@ -65,7 +65,7 @@ class UserProfileFragment : Fragment() {
         }
     }
 
-    private fun openEditProfile() { }
+    private fun openEditProfile() {}
 
     override fun onDestroyView() {
         super.onDestroyView()

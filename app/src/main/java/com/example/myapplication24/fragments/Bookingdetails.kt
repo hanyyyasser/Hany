@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.app.DatePickerDialog
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -27,6 +28,12 @@ class Bookingdetails : Fragment() {
     private val checkInCalendar = Calendar.getInstance()
     private val checkOutCalendar = Calendar.getInstance()
     private val navController by lazy { findNavController() }
+    private var nameString : String = ""
+    private var costString : Int = 0
+    private var image : Int = 0
+   private  var  diffInDays : Long = 0
+
+
 
 
 
@@ -41,6 +48,11 @@ class Bookingdetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        calculateDays()
+        getData()
+        nav()
+
+
         binding.checkInDate.setOnClickListener {
             showDatePickerDialog(checkInCalendar, binding.checkInDate)
         }
@@ -54,6 +66,7 @@ class Bookingdetails : Fragment() {
         binding.bkBtn.setOnClickListener(){
             navController.navigate(R.id.action_bookingdetails_to_detailed_profile)
         }
+
 
     }
     private  fun onClick(){
@@ -88,15 +101,35 @@ class Bookingdetails : Fragment() {
 
             if (checkInDate != null && checkOutDate != null) {
                 val diffInMillis = checkOutDate.time - checkInDate.time
-                val diffInDays = diffInMillis / (1000 * 60 * 60 * 24) // Convert to days
-                //binding.result.text = "Days Spent: $diffInDays"
+                diffInDays = diffInMillis / (1000 * 60 * 60 * 24) // Convert to days
+                binding.result.text = "Days Spent: $diffInDays"
             } else {
                 binding.result.text = "Please select valid dates"
             }
         } catch (e: Exception) {
             binding.result.text = "Error calculating days"
+
+    }
+    }
+    private fun getData() {
+
+        costString = BookingdetailsArgs.fromBundle(requireArguments()).cost
+        nameString = BookingdetailsArgs.fromBundle(requireArguments()).name
+        image = BookingdetailsArgs.fromBundle(requireArguments()).image
+
+
+
+    }
+    private fun nav() {
+        binding.apply {
+            confirmBotton.setOnClickListener(){
+                navController.navigate(BookingdetailsDirections.actionBookingdetailsToPayment(costString,image,nameString,diffInDays))
+            }
         }
     }
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

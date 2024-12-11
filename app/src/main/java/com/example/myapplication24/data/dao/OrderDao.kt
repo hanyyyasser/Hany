@@ -11,6 +11,6 @@ interface OrderDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun createOrder(order: Order)
 
-    @Query("SELECT * FROM ORDERS_TABLE ORDER BY orderId DESC")
+    @Query("SELECT * FROM ORDERS_TABLE ORDER BY id DESC")
     fun getAllOrders() : List<Order>
 }

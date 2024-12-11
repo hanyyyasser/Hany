@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.R
 import com.example.myapplication24.databinding.FragmentDetailedProfileBinding
@@ -29,6 +30,11 @@ class DetailedProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        Toast.makeText(
+//            requireContext(),
+//            "Name: $nameString, Cost: $$costString",
+//            Toast.LENGTH_LONG
+//        ).show()
 
         getData()
         setData()
@@ -40,7 +46,7 @@ class DetailedProfile : Fragment() {
             navController.navigate(R.id.action_detailed_profile_to_main_Page)
         }
         binding.makeBtn.setOnClickListener(){
-            navController.navigate(DetailedProfileDirections.actionDetailedProfileToPayment(costString, nameString, image))
+            navController.navigate(DetailedProfileDirections.actionDetailedProfileToBookingdetails(costString, nameString, image))
         }
     }
 
@@ -48,6 +54,7 @@ class DetailedProfile : Fragment() {
         nameString = DetailedProfileArgs.fromBundle(requireArguments()).name
         costString = DetailedProfileArgs.fromBundle(requireArguments()).cost
         image = DetailedProfileArgs.fromBundle(requireArguments()).image
+
     }
 
     private fun setData() {

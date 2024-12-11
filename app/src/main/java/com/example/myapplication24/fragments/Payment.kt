@@ -5,22 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication24.R
 import com.example.myapplication24.data.OrderViewModel
 import com.example.myapplication24.data.model.Order
 import com.example.myapplication24.databinding.FragmentPaymentBinding
+import kotlin.math.roundToInt
 
 class Payment : Fragment() {
 
-    private var _binding : FragmentPaymentBinding? = null
+    private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
     private val navController by lazy { findNavController() }
-    private val orderViewModel : OrderViewModel by viewModels()
-    private var costString : Int = 0
-    private var nameString : String = ""
-    private var image : Int = 0
+    private val orderViewModel: OrderViewModel by viewModels()
+    private var costString: Int = 0
+    private var nameString: String = ""
+    private var image: Int = 0
+    private var days: Long = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,18 +37,24 @@ class Payment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         onClicks()
-        setData()
         getData()
+        setData()
         setTax()
         calculateTotalPrice()
+    Toast.makeText(requireContext(), "Name: $days, Cost: $$costString", Toast.LENGTH_LONG).show()
     }
 
     private fun onClicks() {
         binding.apply {
-            // navController.navigate(R.id.action_payment_to_detailed_profile)
             buttonPay.setOnClickListener {
-                addOrder()
-                findNavController().navigate(R.id.action_payment_to_order_Page)
+                // Check if the radio button is selected
+                if (!radioButton.isChecked) {
+                    // Show Toast if the radio button is not selected
+                    Toast.makeText(requireContext(), "Please select a payment method", Toast.LENGTH_SHORT).show()
+                } else {
+                    addOrder()
+                    findNavController().navigate(R.id.action_payment_to_final_One)
+                }
             }
         }
     }
@@ -59,27 +68,31 @@ class Payment : Fragment() {
         costString = PaymentArgs.fromBundle(requireArguments()).cost
         nameString = PaymentArgs.fromBundle(requireArguments()).name
         image = PaymentArgs.fromBundle(requireArguments()).image
+        days =  PaymentArgs.fromBundle(requireArguments()).diffInDays
     }
 
     private fun setData() {
         binding.apply {
-            orderValue.text = costString.toString() // edited
+            orderValue.text = costString.toString()
         }
     }
 
-    private fun setTax(){
+    private fun setTax() {
         binding.apply {
-            val orderValue = orderValue.text.toString().toInt()
+            val orderValue = orderValue.text.toString().toIntOrNull() ?: 0
             val taxValue = orderValue * 0.14
-            taxesvalue.text = taxValue.toString()
+            taxesvalue.text = String.format("%.2f", taxValue)
         }
     }
+
 
     private fun calculateTotalPrice() {
         binding.apply {
             val orderValue = orderValue.text.toString().toInt()
-            val TotalPriceValue = orderValue * 1.14
+            val TotalPriceValue = orderValue + taxesvalue.text.toString().toDouble()
             totalPriceValue.text = TotalPriceValue.toString()
+            totalValue.text = TotalPriceValue.roundToInt().toString()
+            extrafeesValue.text = costString.toString()
         }
     }
 }

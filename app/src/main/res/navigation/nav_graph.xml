@@ -123,11 +123,15 @@
         android:id="@+id/final_One"
         android:name="com.example.myapplication24.fragments.Final_One"
         android:label="fragment_final__one"
-        tools:layout="@layout/fragment_final__one" />
+        tools:layout="@layout/fragment_final__one" >
+        <action
+            android:id="@+id/action_final_One_to_order_Page"
+            app:destination="@id/order_Page" />
+    </fragment>
     <fragment
         android:id="@+id/payment"
         android:name="com.example.myapplication24.fragments.Payment"
-        android:label="payment" >
+        android:label="Payment" >
         <action
             android:id="@+id/action_payment_to_final_One"
             app:destination="@id/final_One" />
@@ -141,11 +145,14 @@
             android:id="@+id/action_payment_to_order_Page"
             app:destination="@id/order_Page" />
         <argument
+            android:name="image"
+            app:argType="integer" />
+        <argument
             android:name="name"
             app:argType="string" />
         <argument
-            android:name="image"
-            app:argType="integer" />
+            android:name="diffInDays"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -166,6 +173,15 @@
         <action
             android:id="@+id/action_bookingdetails_to_payment"
             app:destination="@id/payment" />
+        <argument
+            android:name="cost"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

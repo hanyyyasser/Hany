@@ -73,7 +73,7 @@ class CompleteProfileFragment : Fragment() {
             return
         }
 
-        val user = User(SharedPreferenceDatabase.getId(), name, numberOfChildren, address,0)
+        val user = User(SharedPreferenceDatabase.getId(), name, numberOfChildren, address)
 
         userViewModel.addUser(user)
         findNavController().navigate(R.id.action_completeProfileFragment_to_main_Page)
