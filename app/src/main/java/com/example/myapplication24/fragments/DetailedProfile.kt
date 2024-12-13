@@ -30,12 +30,6 @@ class DetailedProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        Toast.makeText(
-//            requireContext(),
-//            "Name: $nameString, Cost: $$costString",
-//            Toast.LENGTH_LONG
-//        ).show()
-
         getData()
         setData()
         onClicks()

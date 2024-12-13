@@ -51,8 +51,6 @@ class Bookingdetails : Fragment() {
         calculateDays()
         getData()
         nav()
-
-
         binding.checkInDate.setOnClickListener {
             showDatePickerDialog(checkInCalendar, binding.checkInDate)
         }
@@ -60,14 +58,9 @@ class Bookingdetails : Fragment() {
         binding.checkOutDate.setOnClickListener {
             showDatePickerDialog(checkOutCalendar, binding.checkOutDate)
         }
-
-
-
         binding.bkBtn.setOnClickListener(){
             navController.navigate(R.id.action_bookingdetails_to_detailed_profile)
         }
-
-
     }
     private  fun onClick(){
         binding.confirmBotton.setOnClickListener(){

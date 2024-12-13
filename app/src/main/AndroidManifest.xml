@@ -28,8 +28,8 @@
         </activity>
 
         <meta-data
-            android:name="com.google.android.gms.maps.V2.API_KEY"
-            android:value="AIzaSyCcycQkl88BrFaYVk2h0rrIQ1AxMrVnoBw" />
+            android:name="com.google.android.gms.geo.API_KEY"
+            android:value="AIzaSyCLg7fgaB0YK8fUrben3xBqmP1ZZ6uAblQ" />
     </application>
 
 </manifest>
