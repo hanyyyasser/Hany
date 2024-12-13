@@ -42,6 +42,9 @@ class DetailedProfile : Fragment() {
         binding.makeBtn.setOnClickListener(){
             navController.navigate(DetailedProfileDirections.actionDetailedProfileToBookingdetails(costString, nameString, image))
         }
+        binding.locationID.setOnClickListener(){
+            navController.navigate(R.id.action_detailed_profile_to_mapsFragment)
+        }
     }
 
     private fun getData() {

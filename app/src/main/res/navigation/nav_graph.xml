@@ -94,6 +94,9 @@
         <action
             android:id="@+id/action_detailed_profile_to_payment"
             app:destination="@id/payment" />
+        <action
+            android:id="@+id/action_detailed_profile_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/main_Page"
@@ -153,6 +156,9 @@
         <argument
             android:name="diffInDays"
             app:argType="long" />
+        <action
+            android:id="@+id/action_payment_to_bookingdetails"
+            app:destination="@id/bookingdetails" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"

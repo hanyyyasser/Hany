@@ -56,23 +56,25 @@ class mapsFragment : Fragment(), OnMapReadyCallback {
             mMap.isMyLocationEnabled = true
         }
 
-        // Define 5 pinned locations
+        // Define 5 locations in Cairo, Egypt
         val locations = listOf(
-            LatLng(37.7749, -122.4194), // San Francisco
-            LatLng(34.0522, -118.2437), // Los Angeles
-            LatLng(40.7128, -74.0060),  // New York
-            LatLng(51.5074, -0.1278),   // London
-            LatLng(48.8566, 2.3522)     // Paris
+            LatLng(30.1605, 31.6422),
+            LatLng(30.1600, 31.6440),
+            LatLng(30.1585, 31.6400),
+            LatLng(30.1620, 31.6385),
+            LatLng(30.1595, 31.6365)
         )
 
-        // Add markers for each location
-        val titles = listOf("San Francisco", "Los Angeles", "New York", "London", "Paris")
+        // Names of 5 people for the location pins
+        val names = listOf("Alice", "Sara", "victoria", "skyler", "anny")
+
+        // Add markers for each location with a person's name as the title
         for (i in locations.indices) {
-            mMap.addMarker(MarkerOptions().position(locations[i]).title(titles[i]))
+            mMap.addMarker(MarkerOptions().position(locations[i]).title(names[i]))
         }
 
-        // Move the camera to one of the locations (e.g., San Francisco)
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations[0], 10f))
+        // Move the camera to the first location (Cairo Tower)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locations[0], 16f))
     }
 
     override fun onDestroyView() {

@@ -46,6 +46,9 @@ class Payment : Fragment() {
 
     private fun onClicks() {
         binding.apply {
+            backPayment.setOnClickListener {
+               findNavController().navigate(R.id.action_payment_to_bookingdetails)
+            }
             buttonPay.setOnClickListener {
                 // Check if the radio button is selected
                 if (!radioButton.isChecked) {
