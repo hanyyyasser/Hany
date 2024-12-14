@@ -18,8 +18,8 @@ class Payment : Fragment() {
 
     private var _binding: FragmentPaymentBinding? = null
     private val binding get() = _binding!!
-    private val navController by lazy { findNavController() }
     private val orderViewModel: OrderViewModel by viewModels()
+    private var totalPrice : Double = 0.0
     private var costString: Int = 0
     private var nameString: String = ""
     private var image: Int = 0
@@ -63,7 +63,7 @@ class Payment : Fragment() {
     }
 
     private fun addOrder() {
-        val order = Order(0, nameString, costString, image)
+        val order = Order(0, nameString, totalPrice.toInt(), image)
         orderViewModel.createOrder(order)
     }
 
@@ -91,9 +91,9 @@ class Payment : Fragment() {
     private fun calculateTotalPrice() {
         binding.apply {
             val orderValue = orderValue.text.toString().toInt()
-            val TotalPriceValue = orderValue + taxesvalue.text.toString().toDouble()
-            totalPriceValue.text = TotalPriceValue.toString()
-            totalValue.text = TotalPriceValue.roundToInt().toString()
+            totalPrice = orderValue + taxesvalue.text.toString().toDouble()
+            totalPriceValue.text = totalPrice.toString()
+            totalValue.text = totalPrice.roundToInt().toString()
             extrafeesValue.text = costString.toString()
         }
     }
