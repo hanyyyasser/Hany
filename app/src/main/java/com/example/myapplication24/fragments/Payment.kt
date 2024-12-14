@@ -36,12 +36,12 @@ class Payment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onClicks()
         getData()
+        onClicks()
         setData()
         setTax()
         calculateTotalPrice()
-    Toast.makeText(requireContext(), "Name: $days, Cost: $$costString", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), "Name: $days, Cost: $$costString", Toast.LENGTH_LONG).show()
     }
 
     private fun onClicks() {
@@ -69,8 +69,8 @@ class Payment : Fragment() {
 
     private fun getData() {
         costString = PaymentArgs.fromBundle(requireArguments()).cost
-        nameString = PaymentArgs.fromBundle(requireArguments()).name
         image = PaymentArgs.fromBundle(requireArguments()).image
+        nameString = PaymentArgs.fromBundle(requireArguments()).name
         days =  PaymentArgs.fromBundle(requireArguments()).diffInDays
     }
 
@@ -87,8 +87,7 @@ class Payment : Fragment() {
             taxesvalue.text = String.format("%.2f", taxValue)
         }
     }
-
-
+    
     private fun calculateTotalPrice() {
         binding.apply {
             val orderValue = orderValue.text.toString().toInt()

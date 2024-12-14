@@ -12,7 +12,7 @@ import com.example.myapplication24.data.model.User
 
 @Database (
     entities = [User::class, Order::class],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 abstract class UserDataBase : RoomDatabase() {

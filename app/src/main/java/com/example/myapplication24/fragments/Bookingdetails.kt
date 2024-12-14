@@ -7,19 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication24.R
 import com.example.myapplication24.databinding.FragmentBookingdetailsBinding
-import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.app.DatePickerDialog
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-
-
-
-
 
 class Bookingdetails : Fragment() {
 
@@ -31,14 +24,9 @@ class Bookingdetails : Fragment() {
     private var nameString : String = ""
     private var costString : Int = 0
     private var image : Int = 0
-   private  var  diffInDays : Long = 0
+    private var diffInDays : Long = 0
 
-
-
-
-
-    override
-    fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -48,25 +36,28 @@ class Bookingdetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        calculateDays()
-        getData()
-        nav()
-        binding.checkInDate.setOnClickListener {
-            showDatePickerDialog(checkInCalendar, binding.checkInDate)
-        }
 
-        binding.checkOutDate.setOnClickListener {
-            showDatePickerDialog(checkOutCalendar, binding.checkOutDate)
-        }
-        binding.bkBtn.setOnClickListener(){
-            navController.navigate(R.id.action_bookingdetails_to_detailed_profile)
+        getData()
+        onClick()
+    }
+
+    private  fun onClick() {
+        binding.apply {
+            confirmBotton.setOnClickListener(){
+                navController.navigate(BookingdetailsDirections.actionBookingdetailsToPayment(costString,image,nameString,diffInDays))
+            }
+            checkInDate.setOnClickListener {
+                showDatePickerDialog(checkInCalendar, binding.checkInDate)
+            }
+            checkOutDate.setOnClickListener {
+                showDatePickerDialog(checkOutCalendar, binding.checkOutDate)
+            }
+            bkBtn.setOnClickListener(){
+                navController.navigate(R.id.action_bookingdetails_to_detailed_profile)
+            }
         }
     }
-    private  fun onClick(){
-        binding.confirmBotton.setOnClickListener(){
-            navController.navigate(R.id.action_bookingdetails_to_payment)
-        }
-    }
+
     private fun showDatePickerDialog(calendar: Calendar, editText: EditText) {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
@@ -78,6 +69,10 @@ class Bookingdetails : Fragment() {
                 // Format the date as dd/MM/yyyy
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 editText.setText(dateFormat.format(calendar.time))
+
+                if (!binding.checkInDate.text.isNullOrEmpty() && !binding.checkOutDate.text.isNullOrEmpty()) {
+                    calculateDays()
+                }
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -101,28 +96,14 @@ class Bookingdetails : Fragment() {
             }
         } catch (e: Exception) {
             binding.result.text = "Error calculating days"
-
-    }
-    }
-    private fun getData() {
-
-        costString = BookingdetailsArgs.fromBundle(requireArguments()).cost
-        nameString = BookingdetailsArgs.fromBundle(requireArguments()).name
-        image = BookingdetailsArgs.fromBundle(requireArguments()).image
-
-
-
-    }
-    private fun nav() {
-        binding.apply {
-            confirmBotton.setOnClickListener(){
-                navController.navigate(BookingdetailsDirections.actionBookingdetailsToPayment(costString,image,nameString,diffInDays))
-            }
         }
     }
 
-
-
+    private fun getData() {
+        costString = BookingdetailsArgs.fromBundle(requireArguments()).cost
+        nameString = BookingdetailsArgs.fromBundle(requireArguments()).name
+        image = BookingdetailsArgs.fromBundle(requireArguments()).image
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
